@@ -35,10 +35,23 @@ class Board {
         {
             Raylib.DrawLine(0, y, Constants.MAX_X, y,  Raylib_cs.Color.RED);
         }
+        int index = 0;
         for (int y = Constants.CELL_SIZE / 2; y < Constants.MAX_Y;) {
             for (int x = Constants.CELL_SIZE / 2; x < Constants.MAX_X;) {
-                Raylib.DrawText("1", x, y, 24, Raylib_cs.Color.RED);
+                var tile = tiles[index];
+                if (tile is Number) {
+                    int count = tile.CreateMineCount(index, tiles);
+                    Raylib.DrawText($"{count}", x, y, 24, Raylib_cs.Color.RED);
+                }
+                else if (tile is Mine) {
+                    // here we would display the image of the mine (Aka the pic of his face)
+                    Raylib.DrawText($"M", x, y, 24, Raylib_cs.Color.RED);
+                }
+                else {
+                    Raylib.DrawText("", x, y, 24, Raylib_cs.Color.RED);
+                }
                 x += Constants.CELL_SIZE;
+                index += 1;
             }
             y += Constants.CELL_SIZE;
         }
@@ -49,15 +62,27 @@ class Board {
             Tile tile = new Tile();
             tiles.Add(tile);
         }
+        Console.WriteLine("Tiles are created");
         SetMines();
+        Console.WriteLine("Mines are set");
         for (int i = 0; i < tiles.Count(); i++) {
             var tile = tiles[i];
-            tile.SetSurroundingMines(i, tiles);
-            tile.SetMineCount();
-            if ((tile.GetMineCount() > 0)) {
-                tiles[i] = new Number();
+            if (tile is Mine) {
+                Console.WriteLine($"I am a mine at index {i}");
             }
-            if ((tile.GetMineCount() == 0)) {
+            else if ((tile.CreateMineCount(i, tiles) > 0)) {
+                tiles[i] = new Number();
+                List<Tile> surroundinngMines = tiles[i].SetSurroundingMines(i, tiles);
+                for (int j = 0; j < surroundinngMines.Count(); j++) {
+                    if (surroundinngMines[j] is Mine) {
+                        Console.Write($"Index {j}, ");
+                    }
+                }
+                Console.WriteLine("is/are mine(s)");
+                Console.WriteLine();
+
+            }
+            else if ((tile.CreateMineCount(i, tiles) == 0)) {
                 tiles[i] = new Blank();
             }
         }
@@ -67,8 +92,8 @@ class Board {
     private List<Tile> SetMines() {
         Random random = new Random();
         for (int m = 0; m < 12; m++) {
-        var index = random.Next(tiles.Count);
-        tiles[index] = new Mine();
+            var index = random.Next(tiles.Count);
+            tiles[index] = new Mine();
         }
         return tiles;
     } 

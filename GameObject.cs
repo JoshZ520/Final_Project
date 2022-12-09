@@ -7,8 +7,6 @@ class GameObject {
 
 class Tile : GameObject {
     public bool isShowing = false;
-    int mineCount = 0;
-    List<Tile> surroundingMines = new List<Tile> {};
 
     private bool CheckForMine(Tile tile) {
         if (tile is Mine) {
@@ -18,21 +16,21 @@ class Tile : GameObject {
         return false;
     }
 
-    public int SetMineCount() {
-        foreach (Tile tile in surroundingMines) {
-            bool isMine = this.CheckForMine(tile);
+    public int CreateMineCount(int tileIndex, List<Tile> tiles) {
+        int mineCount = 0;
+        List<Tile> surroundingMines = SetSurroundingMines(tileIndex, tiles);
+        for (int i = 0; i < surroundingMines.Count() - 1; i++) {
+            bool isMine = this.CheckForMine(surroundingMines[i]);
             if (isMine) {
                 mineCount += 1;
+
             }
         }
         return mineCount;
     }
 
-    public int GetMineCount() {
-        return mineCount;
-    }
-
     public List<Tile> SetSurroundingMines(int tileIndex, List<Tile> tiles) {
+        List<Tile> surroundingMines = new List<Tile> {};
         int rowLength = 12;
         int? tile1 = null;
         int? tile2 = null;
