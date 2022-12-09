@@ -75,7 +75,9 @@ class Tile : GameObject {
         foreach (int? i in indexes) {
             if (i != null) {
                 if (i >= 0) {
-                    surroundingMines.Add(tiles[(int)i]);
+                    if (i <= tiles.Count() - 1) {
+                        surroundingMines.Add(tiles[(int)i]);
+                    }
                 }
             }
         }

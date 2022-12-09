@@ -50,17 +50,16 @@ class Board {
             tiles.Add(tile);
         }
         SetMines();
-        foreach (Tile tile in tiles) {
-            int index = 0;
-            tile.SetSurroundingMines(index, tiles);
+        for (int i = 0; i < tiles.Count(); i++) {
+            var tile = tiles[i];
+            tile.SetSurroundingMines(i, tiles);
             tile.SetMineCount();
             if ((tile.GetMineCount() > 0)) {
-                tiles[index] = new Number();
+                tiles[i] = new Number();
             }
             if ((tile.GetMineCount() == 0)) {
-                tiles[index] = new Blank();
+                tiles[i] = new Blank();
             }
-            index += 1;
         }
         return tiles;
     }  
