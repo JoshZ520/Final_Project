@@ -10,7 +10,9 @@ class Mouse {
     return Raylib.GetMousePosition();
         
  }
-}
+
+ }
+
 
 
 class Player {

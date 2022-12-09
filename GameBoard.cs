@@ -46,10 +46,9 @@ class Constants {
     public static int MAX_Y = 600;
 }
 
-class Score {
-
-    public void ShowScore() {
-        
+class GameOver {
+    public void CheckGameOver() {
+        Raylib.CloseWindow();
     }
 
 }

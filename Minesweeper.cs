@@ -18,7 +18,6 @@ class Game {
             board.DrawBoard();
             if (mouse.MousePress()) {
                 var MouseXY = mouse.MousePos();
-                Console.WriteLine(MouseXY);
             }
 
             Raylib.EndDrawing();
