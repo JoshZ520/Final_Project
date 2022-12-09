@@ -5,6 +5,8 @@ class Game {
     static void Main(string[] args) {
         Board board = new Board();
 
+        Mouse mouse = new Mouse();
+
         var ScreenHeight = Constants.MAX_Y;
         var ScreenWidth = Constants.MAX_X;
 
@@ -14,7 +16,10 @@ class Game {
         
         while (!Raylib.WindowShouldClose()) {
             board.DrawBoard();
-            
+            if (mouse.MousePress()) {
+                var MouseXY = mouse.MousePos();
+                Console.WriteLine(MouseXY);
+            }
 
             Raylib.EndDrawing();
             
