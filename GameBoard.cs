@@ -32,8 +32,10 @@ class Board {
 
     private List<Tile> SetMines(List<Tile> tiles) {
         Random random = new Random();
+        for (int m = 0; m < 12; m++) {
         var index = random.Next(tiles.Count);
         tiles[index] = new Mine();
+        }
         return tiles;
     } 
     }
