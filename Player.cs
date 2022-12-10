@@ -10,26 +10,26 @@ class Mouse {
       return Raylib.GetMousePosition();
    }
 
-   // public int MouseX() {
-   //    return (int)Raylib.GetMousePosition().X;
-   // }
+   public int MouseX() {
+      return (int)Raylib.GetMousePosition().X;
+   }
 
-   // public int MouseY() {
-   //    return (int)Raylib.GetMousePosition().Y;
-   // }
+   public int MouseY() {
+      return (int)Raylib.GetMousePosition().Y;
+   }
 
-public bool MineFound(Tile tile) {
-   if (MousePress()) { 
-         return true;
-}
-   else if (MousePress() && tile is Blank) {
+   public bool MineFound(Tile tile) {
+      if (MousePress()) { 
+            return true;
+      }
+      else if (MousePress() && tile is Blank) {
+         return false;
+      }
+      else if (MousePress() && tile is Number) {
+         return false;
+      }
       return false;
-   }
-   else if (MousePress() && tile is Number) {
-      return false;
-   }
-return false;
-   }
+      }
 }
  
 
