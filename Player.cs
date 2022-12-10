@@ -11,7 +11,20 @@ class Mouse {
         
  }
 
- }
+public bool MineFound(Tile tile) {
+   if (MousePress() && tile is Mine) {
+         return true;
+      }
+   else if (MousePress() && tile is Blank) {
+      return false;
+   }
+   else if (MousePress() && tile is Number) {
+      return false;
+   }
+return false;
+   }
+}
+ 
 
 
 

@@ -46,8 +46,9 @@ class Board {
                     
                 }
                 else if (tile is Mine) {
+                    
                     // here we would display the image of the mine (Aka the pic of his face)
-                    Raylib.DrawText($"M", x, y, 24, Raylib_cs.Color.RED);
+                    Raylib.DrawText($"M", x, y, 24, Raylib_cs.Color.BLACK);
                     
                 }
                 else {
