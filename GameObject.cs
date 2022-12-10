@@ -1,11 +1,7 @@
 using Raylib_cs;
 
-class GameObject {
-    // An attribute "posision" will be used to show where on the grid the tiles and other objects will appear
-}
 
-
-class Tile : GameObject {
+class Tile {
     public bool isShowing = false;
 
     private bool CheckForMine(Tile tile) {
