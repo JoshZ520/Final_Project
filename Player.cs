@@ -2,13 +2,13 @@ using Raylib_cs;
 using System.Numerics;
 
 class Mouse {
-   public bool MousePress() {
-   return Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON); 
-   }
+    public bool MousePress() {
+    return Raylib.IsMouseButtonPressed(MouseButton.MOUSE_LEFT_BUTTON); 
+ }
 
-   public Vector2 MousePos() {
-      return Raylib.GetMousePosition();
-   }
+ public Vector2 MousePos() {
+    return Raylib.GetMousePosition();
+ }
 
    // public int MouseX() {
    //    return (int)Raylib.GetMousePosition().X;
@@ -20,9 +20,9 @@ class Mouse {
 
 
 public bool MineFound(Tile tile) {
-   if (MousePress()) {
+   if (MousePress() && tile is Mine) {
          return true;
-}
+      }
    else if (MousePress() && tile is Blank) {
       return false;
    }
@@ -39,13 +39,3 @@ return false;
 class Player {
 
 }
-
-// if  (tile is Mine) {
-            
-//         }
-//         if (tile is Blank) {
-
-//         }
-//         if (Tile tile = Number) {
-
-//         }
