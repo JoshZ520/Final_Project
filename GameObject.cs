@@ -25,6 +25,12 @@ class Tile {
         return mineCount;
     }
 
+
+    // This creates a list of the tiles surrounding each tile to be used to check how many mines are next to the tile in question.
+    // The format of the tiles in the list are as shown below:
+    // 6  4  8 
+    // 2  x  1
+    // 7  3  5 
     public List<Tile> SetSurroundingMines(int tileIndex, List<Tile> tiles) {
         List<Tile> surroundingMines = new List<Tile> {};
         int rowLength = 12;
