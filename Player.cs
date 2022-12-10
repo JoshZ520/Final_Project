@@ -31,13 +31,3 @@ return false;
 class Player {
 
 }
-
-// if  (tile is Mine) {
-            
-//         }
-//         if (tile is Blank) {
-
-//         }
-//         if (Tile tile = Number) {
-
-//         }
