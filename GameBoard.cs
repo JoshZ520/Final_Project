@@ -18,11 +18,19 @@ class Board {
     {
         for (int x = 0; x < Constants.MAX_X; x += Constants.CELL_SIZE)
         {
-            Raylib.DrawLine(x, 0, x, Constants.MAX_Y, Raylib_cs.Color.GRAY);
+            Raylib.DrawLine(x, 0, x, Constants.MAX_Y, Raylib_cs.Color.WHITE);
         }
         for (int y = 0; y < Constants.MAX_Y; y += Constants.CELL_SIZE)
         {
-            Raylib.DrawLine(0, y, Constants.MAX_X, y, Raylib_cs.Color.GRAY);
+            Raylib.DrawLine(0, y, Constants.MAX_X, y, Raylib_cs.Color.WHITE);
+        }
+        for (int y = 0; y < Constants.MAX_Y; y += Constants.CELL_SIZE)
+        {
+            for (int x = 0; x < Constants.MAX_X; x += Constants.CELL_SIZE)
+        {
+            Raylib.DrawRectangle(x, 0, x, Constants.CELL_SIZE, Raylib_cs.Color.GRAY);
+        }
+            Raylib.DrawRectangle(0, y, Constants.CELL_SIZE, y, Raylib_cs.Color.GRAY);
         }
     }
 
