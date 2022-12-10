@@ -92,14 +92,14 @@ class Tile {
 }
 
 class Mine : Tile {
-    Texture2D texture;
-    public Mine() {
-        var image = Raylib.LoadImage("Subject.png");
-        Raylib.ImageResize(ref image, 40, 40);
-        this.texture = Raylib.LoadTextureFromImage(image);
-        Raylib.UnloadImage(image);
+    // Texture2D texture;
+    // public Mine() {
+    //     var image = Raylib.LoadImage("Subject.png");
+    //     Raylib.ImageResize(ref image, 40, 40);
+    //     this.texture = Raylib.LoadTextureFromImage(image);
+    //     Raylib.UnloadImage(image);
         
-    }
+    // }
 
 }
 
