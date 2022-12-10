@@ -7,8 +7,8 @@ class Board {
     {
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Raylib_cs.Color.BLACK);
-            DrawGrid();
             DrawTile();
+            DrawGrid();
             
             
             
