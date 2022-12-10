@@ -16,6 +16,7 @@ class Game {
         Raylib.InitWindow(ScreenWidth, ScreenHeight, "Minesweeper");
         Raylib.SetTargetFPS(60);
 
+        Color tileColor = Color.BLACK;
         
         while (!Raylib.WindowShouldClose()) {
             board.DrawBoard();
@@ -23,8 +24,9 @@ class Game {
                 var MouseXY = mouse.MousePos();
             }
             if (mouse.MineFound(tile)) {
-                
+                tileColor = Color.RED;
             }
+
             Raylib.EndDrawing();
             
         }
