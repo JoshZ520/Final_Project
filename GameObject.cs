@@ -19,7 +19,7 @@ class Tile : GameObject {
     public int CreateMineCount(int tileIndex, List<Tile> tiles) {
         int mineCount = 0;
         List<Tile> surroundingMines = SetSurroundingMines(tileIndex, tiles);
-        for (int i = 0; i < surroundingMines.Count() - 1; i++) {
+        for (int i = 0; i < surroundingMines.Count(); i++) {
             bool isMine = this.CheckForMine(surroundingMines[i]);
             if (isMine) {
                 mineCount += 1;
@@ -41,7 +41,29 @@ class Tile : GameObject {
         int? tile7 = null;
         int? tile8 = null;
         
-        if ((tileIndex % 12 != 0) || ((tileIndex + 1) % 12 != 0)) {
+
+        // Console.Write($"{tiles[tileIndex]} {tileIndex} ");
+        if (tileIndex % 12 == 0) {
+            // Console.WriteLine("1");
+            tile1 = tileIndex + 1;
+            tile3 = tileIndex + rowLength;
+            tile4 = tileIndex - rowLength;
+            tile8 = tileIndex - rowLength + 1;
+            tile5 = tileIndex + rowLength + 1;
+            // Console.WriteLine($"{tileIndex} top right corner is {tile8}");
+        }
+
+        else if ((tileIndex + 1) % 12 == 0) {
+            // Console.WriteLine("2");
+            tile2 = tileIndex - 1;
+            tile3 = tileIndex + rowLength;
+            tile4 = tileIndex - rowLength;
+            tile6 = tileIndex - rowLength - 1;
+            tile7 = tileIndex + rowLength - 1; 
+        }
+
+        else {
+            // Console.WriteLine("3");
             tile1 = tileIndex + 1;
             tile2 = tileIndex - 1;
             tile3 = tileIndex + rowLength;
@@ -52,24 +74,7 @@ class Tile : GameObject {
             tile8 = tileIndex - rowLength + 1;
         }
 
-        else if (tileIndex % 12 == 0) {
-            tile1 = tileIndex + 1;
-            tile3 = tileIndex + rowLength;
-            tile4 = tileIndex - rowLength;
-            tile8 = tileIndex - rowLength + 1;
-            tile5 = tileIndex + rowLength + 1;
-        }
-
-        else {
-            tile2 = tileIndex - 1;
-            tile3 = tileIndex + rowLength;
-            tile4 = tileIndex - rowLength;
-            tile6 = tileIndex - rowLength - 1;
-            tile7 = tileIndex + rowLength - 1; 
-        }
-
         List<int?> indexes = new List<int?> {tile1, tile2, tile3, tile4, tile5, tile6, tile7, tile8};
-
         foreach (int? i in indexes) {
             if (i != null) {
                 if (i >= 0) {

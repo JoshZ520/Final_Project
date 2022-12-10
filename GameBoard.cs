@@ -58,32 +58,29 @@ class Board {
         
     }
     public List<Tile> SetTileList() {
-        for (int i = 0; i < 96; i++) {
+        for (int i = 0; i < 96; i += 1) {
             Tile tile = new Tile();
             tiles.Add(tile);
+            List<Tile> surroundinngMines = tile.SetSurroundingMines(i, tiles);
         }
-        Console.WriteLine("Tiles are created");
+        
         SetMines();
-        Console.WriteLine("Mines are set");
+
         for (int i = 0; i < tiles.Count(); i++) {
             var tile = tiles[i];
+            var count = tile.CreateMineCount(i, tiles);
+            // Console.WriteLine($"{i} {tile} {count}");
             if (tile is Mine) {
-                Console.WriteLine($"I am a mine at index {i}");
+                //Just a catch for the mines
+                // Console.WriteLine($"{tiles[i]} {i}");
             }
-            else if ((tile.CreateMineCount(i, tiles) > 0)) {
+            else if (count > 0) {
                 tiles[i] = new Number();
-                List<Tile> surroundinngMines = tiles[i].SetSurroundingMines(i, tiles);
-                for (int j = 0; j < surroundinngMines.Count(); j++) {
-                    if (surroundinngMines[j] is Mine) {
-                        Console.Write($"Index {j}, ");
-                    }
-                }
-                Console.WriteLine("is/are mine(s)");
-                Console.WriteLine();
-
+                // Console.WriteLine($"{tiles[i]} {i}");
             }
-            else if ((tile.CreateMineCount(i, tiles) == 0)) {
+            else if (count == 0) {
                 tiles[i] = new Blank();
+                // Console.WriteLine($"{tile} {i}");
             }
         }
         return tiles;
