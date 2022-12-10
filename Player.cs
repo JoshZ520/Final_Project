@@ -12,7 +12,7 @@ class Mouse {
  }
 
 public bool MineFound(Tile tile) {
-   if (MousePress()) {
+   if (MousePress()) { 
          return true;
       }
    else if (MousePress() && tile is Blank) {

@@ -52,7 +52,7 @@ class Board {
                     
                 }
                 else {
-                    Raylib.DrawText("", x, y, 24, Raylib_cs.Color.RED);
+                    Raylib.DrawText("", x, y, 24, Raylib_cs.Color.BLACK);
                     
                 }
                 x += Constants.CELL_SIZE;
