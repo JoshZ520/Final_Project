@@ -2,6 +2,11 @@ using Raylib_cs;
 
 
 class Tile {
+
+    public Tile(Raylib_cs.Color color) {
+        
+    }
+    
     public bool isShowing = false;
 
     private bool CheckForMine(Tile tile) {
@@ -30,7 +35,7 @@ class Tile {
     // The format of the tiles in the list are as shown below:
     // 6  4  8 
     // 2  x  1
-    // 7  3  5 
+    // 7  3  5
     public List<Tile> SetSurroundingMines(int tileIndex, List<Tile> tiles) {
         List<Tile> surroundingMines = new List<Tile> {};
         int rowLength = 12;
