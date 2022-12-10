@@ -27,7 +27,7 @@ class Board {
     }
 
     public void DrawTile() {
-          for (int x = 0; x < Constants.MAX_X; x += Constants.CELL_SIZE)
+        for (int x = 0; x < Constants.MAX_X; x += Constants.CELL_SIZE)
         {
             Raylib.DrawLine(x, 0, x, Constants.MAX_Y, Raylib_cs.Color.RED);
         }
