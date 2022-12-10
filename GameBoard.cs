@@ -24,14 +24,6 @@ class Board {
         {
             Raylib.DrawLine(0, y, Constants.MAX_X, y, Raylib_cs.Color.WHITE);
         }
-        for (int y = 0; y < Constants.MAX_Y; y += Constants.CELL_SIZE)
-        {
-            for (int x = 0; x < Constants.MAX_X; x += Constants.CELL_SIZE)
-        {
-            Raylib.DrawRectangle(x, 0, x, Constants.CELL_SIZE, Raylib_cs.Color.GRAY);
-        }
-            Raylib.DrawRectangle(0, y, Constants.CELL_SIZE, y, Raylib_cs.Color.GRAY);
-        }
     }
 
     public void DrawTile() {
@@ -44,19 +36,23 @@ class Board {
             Raylib.DrawLine(0, y, Constants.MAX_X, y,  Raylib_cs.Color.RED);
         }
         int index = 0;
+        
         for (int y = Constants.CELL_SIZE / 2; y < Constants.MAX_Y;) {
             for (int x = Constants.CELL_SIZE / 2; x < Constants.MAX_X;) {
                 var tile = tiles[index];
                 if (tile is Number) {
                     int count = tile.CreateMineCount(index, tiles);
                     Raylib.DrawText($"{count}", x, y, 24, Raylib_cs.Color.RED);
+                    
                 }
                 else if (tile is Mine) {
                     // here we would display the image of the mine (Aka the pic of his face)
                     Raylib.DrawText($"M", x, y, 24, Raylib_cs.Color.RED);
+                    
                 }
                 else {
                     Raylib.DrawText("", x, y, 24, Raylib_cs.Color.RED);
+                    
                 }
                 x += Constants.CELL_SIZE;
                 index += 1;
