@@ -3,9 +3,9 @@ using Raylib_cs;
 
 class Tile {
 
-    public Tile(Raylib_cs.Color color) {
+    // public Tile(Raylib_cs.Color color) {
 
-    }
+    // }
     
     public bool isShowing = false;
 
@@ -106,7 +106,7 @@ class Mine : Tile {
         
 //     // }
 
-// }
+}
 
 class Number : Tile {
 
