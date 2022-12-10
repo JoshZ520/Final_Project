@@ -8,6 +8,8 @@ class Game {
 
         Mouse mouse = new Mouse();
 
+        Tile tile = new Tile();
+
         var ScreenHeight = Constants.MAX_Y;
         var ScreenWidth = Constants.MAX_X;
 
@@ -20,7 +22,9 @@ class Game {
             if (mouse.MousePress()) {
                 var MouseXY = mouse.MousePos();
             }
-
+            if (mouse.MineFound(tile)) {
+                
+            }
             Raylib.EndDrawing();
             
         }
