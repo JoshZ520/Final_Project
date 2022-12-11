@@ -85,6 +85,7 @@ class Game {
                 }
             }
             else {
+                
                 Raylib.DrawText("Game Over", 100, (ScreenHeight / 2) - 100, 150, Raylib_cs.Color.GRAY);
             }
             
