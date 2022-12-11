@@ -2,39 +2,14 @@ using Raylib_cs;
 
 class Board {
 
-    List<Tile> tiles = new List<Tile> {};
-    public void DrawBoard(Mouse mouse)
+    public void DrawBoard(Mouse mouse, List<Tile> tiles)
     {
             Raylib_cs.Color color = Raylib_cs.Color.GRAY;
             
             Raylib.BeginDrawing();
             Raylib.ClearBackground(Raylib_cs.Color.BLACK);
-            DrawTile(mouse, color);
+            DrawTile(mouse, color, tiles);
             DrawGrid();
-
-            int maxX = Constants.CELL_SIZE;
-            int maxY = Constants.CELL_SIZE;
-            int minX = 0;
-            int minY = 0;
-            int index = 0;
-            foreach (Tile tile in tiles) {
-                maxX = Constants.CELL_SIZE * (index + 1);
-                minX = Constants.CELL_SIZE * index;
-                maxY = Constants.CELL_SIZE * (index + 1);
-                minY = Constants.CELL_SIZE * index;
-                bool isClicked = Check4Click(mouse, maxX, maxY, minX, minY);
-
-                if (isClicked) {
-                    tile.isShowing = true;
-                    Console.WriteLine(isClicked);
-                }
-
-
-                if (tile.isShowing) {
-                    color = Raylib_cs.Color.RED;
-                }
-                index += 1;
-            }
             
             
     }
@@ -51,7 +26,7 @@ class Board {
         }
     }
 
-    public void DrawTile(Mouse mouse, Raylib_cs.Color color) {
+    public void DrawTile(Mouse mouse, Raylib_cs.Color color, List<Tile> tiles) {
         // for (int x = 0; x < Constants.MAX_X; x += Constants.CELL_SIZE)
         // {
         //     Raylib.DrawLine(x, 0, x, Constants.MAX_Y, Raylib_cs.Color.RED);
@@ -66,20 +41,19 @@ class Board {
             for (int x = Constants.CELL_SIZE / 2; x < Constants.MAX_X;) {
                 var tile = tiles[index];
 
-
                 if (tile is Number) {
                     int count = tile.CreateMineCount(index, tiles);
-                    Raylib.DrawText($"{count}", x, y, 24, color);
+                    Raylib.DrawText($"{count}", x, y, 24, tile.color);
                     
                 }
                 else if (tile is Mine) {
                     
                     // here we would display the image of the mine (Aka the pic of his face)
-                    Raylib.DrawText($"M", x, y, 24, color);
+                    Raylib.DrawText($"M", x, y, 24, tile.color);
                     
                 }
                 else {
-                    Raylib.DrawText("", x, y, 24, color);
+                    Raylib.DrawText("", x, y, 24, tile.color);
                     
                 }
                 x += Constants.CELL_SIZE;
@@ -89,14 +63,14 @@ class Board {
         }
         
     }
-    public List<Tile> SetTileList() {
+    public List<Tile> SetTileList(List<Tile> tiles) {
         for (int i = 0; i < 96; i += 1) {
             Tile tile = new Tile();
             tiles.Add(tile);
             List<Tile> surroundinngMines = tile.SetSurroundingMines(i, tiles);
         }
         
-        SetMines();
+        SetMines(tiles);
 
         for (int i = 0; i < tiles.Count(); i++) {
             var tile = tiles[i];
@@ -118,7 +92,7 @@ class Board {
         return tiles;
     }  
 
-    private List<Tile> SetMines() {
+    private List<Tile> SetMines(List<Tile> tiles) {
         Random random = new Random();
         for (int m = 0; m < 12; m++) {
             var index = random.Next(tiles.Count);
@@ -127,7 +101,7 @@ class Board {
         return tiles;
     }
 
-    private bool Check4Click(Mouse mouse, int maxX, int maxY, int minX, int minY) {
+    public bool Check4Click(Mouse mouse, int maxX, int maxY, int minX, int minY) {
         if (mouse.MousePress()) {
             if ((mouse.MouseX() > minX) && (mouse.MouseY() > minY) && (mouse.MouseX() < maxX) && (mouse.MouseY() < maxY)) {
                 return true;

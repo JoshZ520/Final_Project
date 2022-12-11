@@ -8,12 +8,13 @@ class Tile {
     // }s
     
     public bool isShowing = false;
+    
+    // {maxX, maxY, minX, minY}
+    public Raylib_cs.Color color = Raylib_cs.Color.GRAY;
 
+    // public List<int> SetPosValues() {
 
-    int maxX;
-    int minX;
-    int maxY;
-    int minY;
+    // }
     
 
     private bool CheckForMine(Tile tile) {
