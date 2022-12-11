@@ -53,7 +53,7 @@ class Board {
                     
                 }
                 else {
-                    Raylib.DrawText("", x, y, 24, tile.color);
+                    Raylib.DrawText("0", x, y, 24, tile.color);
                     
                 }
                 x += Constants.CELL_SIZE;
@@ -67,7 +67,6 @@ class Board {
         for (int i = 0; i < 96; i += 1) {
             Tile tile = new Tile();
             tiles.Add(tile);
-            List<Tile> surroundinngMines = tile.SetSurroundingMines(i, tiles);
         }
         
         SetMines(tiles);
@@ -120,7 +119,7 @@ class Constants {
 
 class GameOver {
     public void CheckGameOver() {
-        
+
     }
 
 }

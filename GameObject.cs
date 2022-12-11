@@ -27,9 +27,9 @@ class Tile {
 
     public int CreateMineCount(int tileIndex, List<Tile> tiles) {
         int mineCount = 0;
-        List<Tile> surroundingMines = SetSurroundingMines(tileIndex, tiles);
+        List<int> surroundingMines = SetSurroundingMines(tileIndex, tiles);
         for (int i = 0; i < surroundingMines.Count(); i++) {
-            bool isMine = this.CheckForMine(surroundingMines[i]);
+            bool isMine = this.CheckForMine(tiles[surroundingMines[i]]);
             if (isMine) {
                 mineCount += 1;
 
@@ -44,8 +44,8 @@ class Tile {
     // 6  4  8 
     // 2  x  1
     // 7  3  5
-    public List<Tile> SetSurroundingMines(int tileIndex, List<Tile> tiles) {
-        List<Tile> surroundingMines = new List<Tile> {};
+    public List<int> SetSurroundingMines(int tileIndex, List<Tile> tiles) {
+        List<int> surroundingMines = new List<int> {};
         int rowLength = 12;
         int? tile1 = null;
         int? tile2 = null;
@@ -94,7 +94,7 @@ class Tile {
             if (i != null) {
                 if (i >= 0) {
                     if (i <= tiles.Count() - 1) {
-                        surroundingMines.Add(tiles[(int)i]);
+                        surroundingMines.Add((int)i);
                     }
                 }
             }
