@@ -5,9 +5,16 @@ class Tile {
 
     // public Tile(Raylib_cs.Color color) {
 
-    // }
+    // }s
     
     public bool isShowing = false;
+
+
+    int maxX;
+    int minX;
+    int maxY;
+    int minY;
+    
 
     private bool CheckForMine(Tile tile) {
         if (tile is Mine) {

@@ -8,8 +8,6 @@ class Game {
 
         Mouse mouse = new Mouse();
 
-        Tile tile = new Tile();
-
         var ScreenHeight = Constants.MAX_Y;
         var ScreenWidth = Constants.MAX_X;
 
@@ -19,18 +17,13 @@ class Game {
         Color tileColor = Color.BLACK;
         
         while (!Raylib.WindowShouldClose()) {
-            board.DrawBoard();
-            if (mouse.MousePress()) {
-                var MouseXY = mouse.MousePos();
-            }
-            if (mouse.MineFound(tile)) {
-                tileColor = Color.RED;
-            }
+            board.DrawBoard(mouse);
+
 
             Raylib.EndDrawing();
             
         }
         
     Raylib.CloseWindow();
-}
+    }
 }

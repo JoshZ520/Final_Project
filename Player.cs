@@ -22,18 +22,21 @@ class Mouse {
       return (int)Raylib.GetMousePosition().Y;
    }
 
-public bool MineFound(Tile tile) {
-   if (MousePress()) { 
+   public bool MineFound(Tile tile) {
+      if (MousePress() && tile is Blank) {
+         return false;
+      }
+      else if (MousePress() && tile is Number) {
+         return false;
+      }
+      else if (MousePress()) { 
          return true;
-}
-   else if (MousePress() && tile is Blank) {
-      return false;
+      }
+      else {
+         return false;
+      }
    }
-   else if (MousePress() && tile is Number) {
-      return false;
-   }
-return false;
-   }
+
 }
  
 
