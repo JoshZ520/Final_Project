@@ -120,7 +120,7 @@ class Constants {
 
 class GameOver {
     public void CheckGameOver() {
-        Raylib.CloseWindow();
+        
     }
 
 }

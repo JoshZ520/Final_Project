@@ -15,7 +15,7 @@ class Game {
         Raylib.InitWindow(ScreenWidth, ScreenHeight, "Minesweeper");
         Raylib.SetTargetFPS(60);
 
-        Color tileColor = Color.BLACK;
+        bool gameOver = false;
         
         while (!Raylib.WindowShouldClose()) {
             int maxX = Constants.CELL_SIZE;
@@ -33,11 +33,9 @@ class Game {
 
                 if (isClicked) {
                     tile.color = Raylib_cs.Color.RED;
-                    Console.WriteLine(intervalX);
-                    Console.WriteLine(intervalY);
-                    Console.WriteLine($"{maxX}, {maxY}");
-                    Console.WriteLine($"{minX}, {minY}");
-                    Console.WriteLine(tile);
+                    if (tile is Mine) {
+                        gameOver = true;
+                    }
                 }
 
                 if ((intervalX + 1) % 12 == 0) {
@@ -50,8 +48,12 @@ class Game {
                     intervalX += 1;
                 }
             }
-            board.DrawBoard(mouse, tiles);
-
+            if (!gameOver) {
+                board.DrawBoard(mouse, tiles);
+            }
+            else {
+                Raylib.DrawText("Game Over", 100, (ScreenHeight / 2) - 100, 150, Raylib_cs.Color.GRAY);
+            }
 
             Raylib.EndDrawing();
             

@@ -10,7 +10,7 @@ class Tile {
     public bool isShowing = false;
     
     // {maxX, maxY, minX, minY}
-    public Raylib_cs.Color color = Raylib_cs.Color.GRAY;
+    public Raylib_cs.Color color = Raylib_cs.Color.BLACK;
 
     // public List<int> SetPosValues() {
 
